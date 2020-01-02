@@ -20,7 +20,7 @@ AutoLoginService::AutoLoginService(QObject *parent)
 {
 }
 
-void AutoLoginService::startAutoLogin(const QString& next_url)
+void AutoLoginService::startAutoLogin(const QString& next_url, bool is_containt_fragment)
 {
     const Account account = seafApplet->accountManager()->currentAccount();
     QUrl absolute_url = QUrl(next_url).isRelative()
@@ -35,8 +35,11 @@ void AutoLoginService::startAutoLogin(const QString& next_url)
     if (absolute_url.hasQuery()) {
         next += "?" + absolute_url.query();
     }
-    if (!absolute_url.fragment().isEmpty()) {
-        next += "#" + absolute_url.fragment();
+
+    if (is_containt_fragment) {
+        if (!absolute_url.fragment().isEmpty()) {
+            next += "#" + absolute_url.fragment();
+        }
     }
     GetLoginTokenRequest *req = new GetLoginTokenRequest(account, next);
 

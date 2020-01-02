@@ -277,7 +277,7 @@ void SeafileExtensionHandler::privateShare(const QString& repo_id,
 
 void SeafileExtensionHandler::openUrlWithAutoLogin(const QUrl& url)
 {
-    AutoLoginService::instance()->startAutoLogin(url.toString());
+    AutoLoginService::instance()->startAutoLogin(url.toString(), false);
 }
 
 void SeafileExtensionHandler::onShareLinkGenerated(const QString& link)

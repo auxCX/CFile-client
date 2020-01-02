@@ -16,7 +16,7 @@ public:
     // Get a auto login token from server, and then open the "next_url" after login
 
 public slots:
-    void startAutoLogin(const QString& next_url);
+    void startAutoLogin(const QString& next_url, bool is_containt_fragment = true);
 
 private slots:
     void onGetLoginTokenSuccess(const QString& token);
